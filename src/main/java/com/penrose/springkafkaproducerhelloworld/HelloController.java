@@ -1,4 +1,25 @@
 package com.penrose.springkafkaproducerhelloworld;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/api/hello")
 public class HelloController {
+
+    private final HelloProducerService producerService;
+
+    public HelloController(HelloProducerService producerService) {
+        this.producerService = producerService;
+    }
+
+    @PostMapping("/fixed")
+    public String sendFixed() {
+        producerService.sendHello();
+        return "Sent fixed message";
+    }
+
+    @PostMapping("/custom")
+    public String sendCustom(@RequestBody String message) {
+        producerService.sendCustom(message);
+        return "Sent custom message";
+    }
 }
