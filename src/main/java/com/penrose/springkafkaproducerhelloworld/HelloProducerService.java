@@ -2,6 +2,7 @@ package com.penrose.springkafkaproducerhelloworld;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class HelloProducerService {
@@ -16,9 +17,11 @@ public class HelloProducerService {
 //        kafkaTemplate.send("hello-world", "Hello, Kafka!");
 //    }
 
-    public void sendGreeting() {
-        Greeting greeting = new Greeting("Penrose", "Hello, JSON!");
-        kafkaTemplate.send("goodnite-world",greeting);
+    public void sendGreeting(Greeting greeting,String key) {
+        kafkaTemplate.send("goodnite-world",greeting.eventType(),greeting);
+        System.out.println("Message sent: " + greeting);
+        System.out.println("Key sent: " + key);
+
     }
 
 //

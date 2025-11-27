@@ -11,17 +11,24 @@ public class HelloController {
         this.producerService = producerService;
     }
 
-    @PostMapping("/fixed")
-    public String sendFixed() {
-        producerService.sendHello();
-        return "Sent fixed message";
-    }
+//    @PostMapping("/fixed")
+//    public String sendFixed() {
+//        producerService.sendHello();
+//        return "Sent fixed message";
+//    }
 
-    @PostMapping("/custom")
-    public String sendCustom(@RequestBody String message, @RequestParam String key) {
-        producerService.sendCustom(message,key);
-        System.out.println("Message sent: " + message);
-        System.out.println("Key sent: " + key);
-        return "Sent custom message";
+//    @PostMapping("/custom")
+//    public String sendCustom(@RequestBody String message, @RequestParam String key) {
+//        producerService.sendCustom(message,key);
+//        System.out.println("Message sent: " + message);
+//        System.out.println("Key sent: " + key);
+//        return "Sent custom message";
+//    }
+
+    @PostMapping("/json")
+    public String sendJson(@RequestBody Greeting greeting) {
+        System.out.println(greeting.eventType());
+        producerService.sendGreeting(greeting,greeting.eventType());
+        return "JSON sent";
     }
 }
