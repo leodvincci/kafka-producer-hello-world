@@ -16,7 +16,13 @@ public class HelloProducerService {
         kafkaTemplate.send("hello-world", "Hello, Kafka!");
     }
 
-    public void sendCustom(String message) {
-        kafkaTemplate.send("hello-world", message);
+
+
+    public void sendGoodNight() {
+        kafkaTemplate.send("goodnite-world", "Goodnight, Kafka!");
+    }
+
+    public void sendCustom(String message,String key) {
+        kafkaTemplate.send("goodnite-world", key, message);
     }
 }
